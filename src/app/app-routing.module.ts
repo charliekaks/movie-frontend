@@ -10,7 +10,7 @@ const appRoutes: Routes = [
   {path: 'login ', component: LoginComponent},
   {path: 'movie-list', component: MovieListComponent},
   {path: 'movie-details', component: MovieDetailsComponent},
-  { path: '',   redirectTo: '/movie-list', pathMatch: 'full' }, // redirect to `first-component`
+  { path: '',   redirectTo: '/movie-list', pathMatch: 'full' }, // redirect to `Movie List component`
   { path: '**', component: PageNotFoundComponent}
 ]
 
