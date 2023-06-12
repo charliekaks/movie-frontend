@@ -17,10 +17,11 @@ const httpOptions = {
 export class SecurityService {
 userAuth: UserAuthBase = new UserAuthBase();
   constructor(private http: HttpClient) { }
-  apiUrl='http://localhost:3000/api/auth/login'
+  apiUrl='http://localhost:3000/api/v1/auth/login'
   login(user:UserBase): Observable<UserAuthBase>{
     return this.http.post<UserAuthBase>(this.apiUrl, user, httpOptions).pipe(
       tap((resp)=>{
+        console.log(resp)
         Object.assign(this.userAuth, resp)
       }),
       catchError((error)=>{

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, } from '@angular/forms';
 import { UserBase } from '../security/user-base';
 import { SecurityService } from '../security/security.service';
+import {  ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,9 @@ import { SecurityService } from '../security/security.service';
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private securityService: SecurityService){}
+  constructor(private securityService: SecurityService, 
+    private router: Router, 
+    private route: ActivatedRoute ){}
   ngOnInit(): void {
   this.myForm = new FormGroup({
     email : new FormControl('', Validators.compose([
@@ -28,6 +31,8 @@ export class LoginComponent implements OnInit {
   }
   login(user:UserBase){
         console.log(user.email);
-        this.securityService.login(user).subscribe()
+        this.securityService.login(user).subscribe(
+          // this.router.navigate('/movie-list')
+        )
   }
 }
