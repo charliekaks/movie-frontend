@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MovieComponent } from './movie/movie.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { HttpInterceptorProviders } from './shared/http-interceptors/http-interceptors';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    HttpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
