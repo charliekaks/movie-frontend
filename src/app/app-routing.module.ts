@@ -8,7 +8,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { AuthGuard } from './shared/auth.guard';
 
 const appRoutes: Routes = [
-  {path: 'login ', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'movie-list', component: MovieListComponent, canActivate:[AuthGuard]},
   {path: 'movie-details', component: MovieDetailsComponent,canActivate:[AuthGuard]},
   { path: '',   redirectTo: '/movie-list', pathMatch: 'full' }, // redirect to `Movie List component`
@@ -21,8 +21,7 @@ const appRoutes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forRoot(
-      appRoutes,
-      {enableTracing : true}
+      appRoutes
     )
   ],
   exports: [

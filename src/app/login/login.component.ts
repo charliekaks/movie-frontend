@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, } from '@angular/forms';
 import { UserBase } from '../security/user-base';
 import { SecurityService } from '../security/security.service';
 import {  ActivatedRoute, Router } from '@angular/router';
+import { UserAuthBase } from '../security/user-auth-base';
 
 
 @Component({
@@ -12,7 +13,6 @@ import {  ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
-
   constructor(private securityService: SecurityService, 
     private router: Router, 
     private route: ActivatedRoute ){}
@@ -27,12 +27,17 @@ export class LoginComponent implements OnInit {
       Validators.min(8)
     ]))
   })
-  
   }
+  appUser:UserAuthBase = new UserAuthBase();
   login(user:UserBase){
         console.log(user.email);
+        this.appUser.init();
         this.securityService.login(user).subscribe(
-          // this.router.navigate('/movie-list')
+          resp => {
+            localStorage.setItem("AuthObject", JSON.stringify(resp))
+            this.appUser = resp;
+            this.router.navigateByUrl('/movie-list');
+          }
         )
   }
 }
