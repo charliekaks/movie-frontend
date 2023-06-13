@@ -1,18 +1,33 @@
-<div class="card mb-3" style="max-width: 540px;">
+<div class="card mb-12" style="max-width: auto" *ngIf="isLoading">
     <div class="row g-0">
       <div class="col-md-4">
         <img src="https://image.tmdb.org/t/p/w500/{{movie.img_path}}" class="img-fluid rounded-start" alt="...">
       </div>
-      <div class="col-md-8">
+      <div class="col-md-4">
         <div class="card-body">
-          <h5 class="card-title">{{movie.title}}</h5>
+          <h3 class="card-title">{{movie.title}}</h3>
+          <h5 class="card-text">{{movie.tagline}}</h5>
           <p class="card-text">{{movie.description}}</p>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{movie.date}}</li>
-            <li class="list-group-item">{{movie.rating}}</li>
-            <li class="list-group-item">{{movie.language}}</li>
+            <li class="list-group-item">Release Date: {{movie.date | date}}</li>
+            <li class="list-group-item">Average Rating: {{movie.rating}}</li>
+            <li class="list-group-item">Runtime: {{movie.runtime}} minutes</li>
+            <li class="list-group-item">Budget: {{movie.budget | currency}}</li>
+            <li class="list-group-item">Revenue: {{movie.revenue | currency}}</li>
           </ul>
+          <div class="row"  >
+            <h3 style="text-align: center;">Cast:</h3>
+            <div class="col-sm-4" *ngFor="let character of cast">
+              <img src="https://image.tmdb.org/t/p/w500{{character.profile_path}}" class="rounded" alt="..." style="width: 96px; height: 96px;">
+              <p class="card-text">{{character.original_name}} <br/>  <b><i>{{character.character}}</i></b> </p>
+            </div>
+          </div>
+
         </div>
+      </div>
+      <div class="col-md-4">
+        <h4 class="card-title"> Videos</h4>
+        <iframe height="30%" width="430px" src="https://www.youtube.com/embed/PrOET-HCEPY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </div>

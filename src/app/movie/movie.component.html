@@ -3,10 +3,10 @@
       <div class="card">
           <img src="https://image.tmdb.org/t/p/w500/{{movie.img_path}}" class="card-img-top img-fluid c-h" alt="movie">
         <div class="card-body">
-          <h5 class="card-title" style="min-height: 3em;"> <a routerLink="/movie-details/{{movie.id}}">{{movie.title}}</a> </h5>
+          <h5 class="card-title" style="min-height: 2.5em;"> <a routerLink="/movie-details/{{movie.id}}">{{movie.title}}</a> </h5>
           <!-- <p class="card-text">{{movie.description.length > 250 ? movie.description.substring(0,227).concat('...') : movie.description}}</p> -->
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{movie.date}}</li>
+            <li class="list-group-item">{{movie.date | date}}</li>
             <li class="list-group-item">{{movie.rating}}</li>
             <li class="list-group-item">{{movie.language}}</li>
           </ul>

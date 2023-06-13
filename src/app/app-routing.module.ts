@@ -8,10 +8,10 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { AuthGuard } from './shared/auth.guard';
 
 const appRoutes: Routes = [
-  {path: '', pathMatch:'full', redirectTo:'all'},
   {path: 'login', component: LoginComponent},
   {path: 'movie-list', component: MovieListComponent, canActivate:[AuthGuard]},
   {path: 'movie-details/:id', component: MovieDetailsComponent,canActivate:[AuthGuard]},
+  { path: '',   redirectTo: '/movie-list', pathMatch: 'full' }, // redirect to `Movie List component`
   { path: '**', component: PageNotFoundComponent}
 ]
 

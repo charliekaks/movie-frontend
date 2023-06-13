@@ -1,15 +1,15 @@
 export class Movie{
-    id: Number;
+    id: number;
     language: string;
     title: string;
     description: string;
     img_path: string;
     date: string;
-    rating: Number;
-    budget?: string;
+    rating: number;
+    budget?: number;
     website?:string;
-    revenue?:Number;
-    runtime?: Number;
+    revenue?:number;
+    runtime?: number;
     tagline?: string;
     genres?: Array<string>;
 }
