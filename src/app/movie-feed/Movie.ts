@@ -10,4 +10,6 @@ export class Movie{
     website?:string;
     revenue?:Number;
     runtime?: Number;
+    tagline?: string;
+    genres?: Array<string>;
 }

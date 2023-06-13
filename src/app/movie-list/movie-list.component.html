@@ -1,3 +1,6 @@
-<div class="row row-cols-1 row-cols-md-3 g-4" >
- <app-movie  *ngFor="let movie of movies" [movie]="movie"></app-movie>
+<div class="container-fluid" style="margin-top: 0.7em;">
+    <div class="row row-cols-1 row-cols-md-4 g-4" >
+        <app-movie  *ngFor="let movie of movies" [movie]="movie"></app-movie>
+    </div>
 </div>
+

@@ -15,6 +15,7 @@ const httpOptions = {
 export class MovieServiceService {
   constructor(private http: HttpClient) { }
   moviesFeed: Movie[];
+  details:Movie;
   apiUrl = 'http://localhost:3000/api/v1/feed';
 
   getPopularMovies(): Observable<Movie[]>{
@@ -26,6 +27,17 @@ export class MovieServiceService {
       catchError((error)=>{
         console.log(error);
         return throwError(() => error);
+      })
+    )
+  }
+  getAMovie(id:any): Observable<Movie>{
+    return this.http.get<Movie>(this.apiUrl + `/${id}`, httpOptions).pipe(
+      tap((resp)=>{
+        this.details = resp;
+      }),
+      catchError((error)=>{
+        console.log(error);
+        return throwError(()=> error)
       })
     )
   }
