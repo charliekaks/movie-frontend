@@ -9,8 +9,8 @@ import { AuthGuard } from './shared/auth.guard';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'movie-list', component: MovieListComponent, canActivate:[AuthGuard]},
-  {path: 'movie-details/:id', component: MovieDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'movie-list', component: MovieListComponent, data:{claimType:'canAccessMovies'},canActivate:[AuthGuard]},
+  {path: 'movie-details/:id', component: MovieDetailsComponent, data:{claimType:'canAccessMovies'},canActivate:[AuthGuard]},
   { path: '',   redirectTo: '/movie-list', pathMatch: 'full' }, // redirect to `Movie List component`
   { path: '**', component: PageNotFoundComponent}
 ]

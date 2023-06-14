@@ -8,4 +8,9 @@ export class UserAuthBase{
         this.bearerToken = '';
         this.isAuthenticated = false;
     }
+
+    getClaimProperty(obj:any,key:any): boolean{
+        let status = obj[key];
+        return status;
+    }
 }

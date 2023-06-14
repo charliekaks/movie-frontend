@@ -13,10 +13,12 @@ import { UserAuthBase } from '../security/user-auth-base';
 })
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
+  returnUrl : string | undefined;
   constructor(private securityService: SecurityService, 
     private router: Router, 
     private route: ActivatedRoute ){}
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')!;
   this.myForm = new FormGroup({
     email : new FormControl('', Validators.compose([
       Validators.required,
@@ -36,7 +38,9 @@ export class LoginComponent implements OnInit {
           resp => {
             localStorage.setItem("AuthObject", JSON.stringify(resp))
             this.appUser = resp;
-            this.router.navigateByUrl('/movie-list');
+            if (this.returnUrl) {
+              this.router.navigateByUrl(this.returnUrl)
+            }
           }
         )
   }

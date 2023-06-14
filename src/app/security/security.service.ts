@@ -22,13 +22,27 @@ userAuth: UserAuthBase = new UserAuthBase();
     return this.http.post<UserAuthBase>(this.apiUrl, user, httpOptions).pipe(
       tap((resp)=>{
         console.log(resp)
+        this.userAuth.isAuthenticated = true;
         Object.assign(this.userAuth, resp)
       }),
-      catchError((error)=>{
-        console.log(error);
-        return throwError(() => error);
-      })
+      catchError(this.handleError)
     )
   }
+
+  logout(): void{
+      this.userAuth.init();
+  }
   
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\\nMessage: ${error.message}`;
+    }
+    return throwError(()=>errorMessage);
+  }
 }
