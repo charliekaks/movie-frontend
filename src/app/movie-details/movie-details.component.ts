@@ -11,7 +11,11 @@ import { Movie } from '../movie-feed/Movie';
 export class MovieDetailsComponent implements OnInit{
   isLoading: boolean= false;
   movie: Movie;
-  cast: any;
+  cast: Array<any>;
+  videos: Array<any>;
+  firstUrl: string;
+  secondUrl: string;
+  thirdUrl: string;
   constructor(private movieService:MovieServiceService, private route:ActivatedRoute){}
   ngOnInit(): void {
       const id = this.route.snapshot.paramMap.get('id');
@@ -25,6 +29,15 @@ export class MovieDetailsComponent implements OnInit{
         (resp)=>{
           console.log(resp);
           this.cast = resp.slice(0,9);
+        }
+      )
+      this.movieService.getVideos(id).subscribe(
+        (resp)=>{
+          this.videos = resp.slice(0,3);
+          console.log(this.videos)
+          this.firstUrl = this.videos[0];
+          this.secondUrl = this.videos[1]
+          this.thirdUrl = this.videos[2]
         }
       )
   }

@@ -27,7 +27,11 @@
       </div>
       <div class="col-md-4">
         <h4 class="card-title"> Videos</h4>
-        <iframe height="30%" width="430px" src="https://www.youtube.com/embed/PrOET-HCEPY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe height="30%" width="430px" [src]="firstUrl |  safe: 'resourceUrl'" title="YouTube video player" frameborder="0"></iframe>
+        <span *ngIf="secondUrl || thirdUrl">
+          <iframe height="30%" width="430px" [src]="secondUrl|  safe: 'resourceUrl'" title="YouTube video player" frameborder="0"></iframe>
+          <iframe height="30%" width="430px" [src]="thirdUrl |  safe: 'resourceUrl'" title="YouTube video player" frameborder="0"></iframe>
+        </span>          
       </div>
     </div>
   </div>

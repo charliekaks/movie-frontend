@@ -17,6 +17,7 @@ export class MovieServiceService {
   moviesFeed: Movie[];
   details:Movie;
   cast:any;
+  videos:any;
   apiUrl = 'http://localhost:3000/api/v1/feed';
 
   getPopularMovies(): Observable<Movie[]>{
@@ -46,6 +47,17 @@ export class MovieServiceService {
     return this.http.get<any>(this.apiUrl+`/cast/${id}`,httpOptions).pipe(
       tap((resp)=>{
         this.cast = resp;
+      }),
+      catchError((error)=>{
+        console.log(error);
+        return throwError(()=> error)
+      })
+    )
+  }
+  getVideos(id:any): Observable<any>{
+    return this.http.get<any>(this.apiUrl+`/videos/${id}`,httpOptions).pipe(
+      tap((resp)=>{
+        this.videos = resp;
       }),
       catchError((error)=>{
         console.log(error);

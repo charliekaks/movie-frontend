@@ -11,6 +11,7 @@ import { MovieComponent } from './movie/movie.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { HttpInterceptorProviders } from './shared/http-interceptors/http-interceptors';
+import { SafePipeModule } from 'safe-pipe';
 
 @NgModule({
   declarations: [
@@ -19,17 +20,18 @@ import { HttpInterceptorProviders } from './shared/http-interceptors/http-interc
     PageNotFoundComponent,
     MovieComponent,
     MovieListComponent,
-    MovieDetailsComponent,
-    
+    MovieDetailsComponent,    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SafePipeModule
   ],
   providers: [
-    HttpInterceptorProviders
+    HttpInterceptorProviders,
+   
   ],
   bootstrap: [AppComponent]
 })
